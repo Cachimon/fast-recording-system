@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "mp-loading": "../components/loading/loading",
+    "mp-actionSheet": "../components/actionsheet/actionsheet",
+    "mp-dialog": "../components/dialog/dialog"
+  }
+}

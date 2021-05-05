@@ -1,0 +1,81 @@
+<!--index.wxml-->
+<view class="container" bindtap="closeOperation">
+
+  <view class="userinfo" style="height:100px;text-align:left;margin-top:0;padding-top:30rpx">
+    <button 
+      open-type="getUserInfo" 
+      bindgetuserinfo="onGetUserInfo"
+      class="userinfo-avatar"
+      style="background-image: url({{avatarUrl}})"
+      size="default"
+    ></button>
+    <view class="userinfo-nickname-wrapper">
+    <view style="padding-left:54px;color:#000;margin-top:10px">早上好，{{userInfo.userName}}</view>
+      <view style="margin-left:54px;color:#000;margin-top:10px;border:1px solid #ddd;width:120rpx;text-align:center;line-height:60rpx;height:60rpx;border-radius:20rpx" data-type="name" bindtap="openDialog">设置</view>
+    </view>
+  </view>
+
+</view>
+  <view style="height:100%" bindtap="closeOperation">
+    <view style="text-align:right">
+      <text bindtap="addGroupClick">添加分组</text>
+    </view>
+  <view class="group-title" bindtap="toggleGroup">分组管理</view>
+  <!-- <view animation="{{animationData}}" class="group {{showGroup ? '' : 'hidden'}}"> -->
+  <view animation="{{animationData}}" class="group">
+    <view class="group-item" wx:for="{{groupList}}" wx:key="{{index}}" data-index="{{index}}" bindlongtap="showOperation">{{item.groupName}}</view>
+  </view>
+  </view>
+<view class="operation {{!!operationVisible ? 'show' : ''}}" style="{{operationStyle}}">
+ <view class="operation-item" bindtap="updateGroupClick">编辑</view>
+ <view wx:if="{{currentGroupIndex !== 0}}" class="operation-item" bindtap="upHandler">上移</view>
+ <view wx:if="{{currentGroupIndex !== groupList.length - 1}}" class="operation-item" bindtap="downHandler">下移</view>
+ <view class="operation-item" bindtap="deleteGroup">删除</view>
+</view>
+
+<mp-dialog title="修改昵称" show="{{dialogShow}}" bindbuttontap="tapDialogButton" buttons="{{buttons}}">
+    <view>
+     <mp-form id="form" rules="{{rules}}" models="{{formData}}">
+       <mp-cell wx-if="showName" prop="qq" ext-class="">
+          <input bindinput="formInputChange" data-field="nickName" class="weui-input" value="{{formData.nickName}}" placeholder="请输入昵称" />
+      </mp-cell>
+       </mp-form>
+    </view>
+</mp-dialog>
+<!-- 确认是否删除弹窗 -->
+<mp-dialog  show="{{delDialogShow}}" bindbuttontap="tapDelDialog" data-dialogType="del" buttons="{{buttons}}">
+    <view>
+     是否确定删除分组【{{groupList[currentGroupIndex].groupName}}】?
+    </view>
+</mp-dialog>
+
+<!-- 操作成功 -->
+<mp-dialog show="{{msgDialogShow}}" bindbuttontap="tapMsgDialog" buttons="{{oneButton}}">
+  <view>{{tips}}</view>
+</mp-dialog>
+
+<view wx:if="{{loading}}" style="position:fixed;left:0;bottom:0;top:0;right:0;background:rgba(0,0,0,0.9);">
+  <view  style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100%">
+    <mp-loading duration="{{900}}" ext-class="demo0" type="dot-white" show="{{loading}}" animated="{{animated}}"></mp-loading>
+  </view>
+</view>
+
+<mp-dialog title="添加分组" show="{{addDialogShow}}" bindbuttontap="tapAddDialog" buttons="{{buttons}}">
+    <view>
+     <mp-form id="form"  models="{{formData}}">
+       <mp-cell  prop="groupName" ext-class="">
+          <input bindinput="addInputChange" data-field="groupName" class="weui-input" value="{{formData.groupName}}" placeholder="请输入分组名称" />
+      </mp-cell>
+       </mp-form>
+    </view>
+</mp-dialog>
+
+<mp-dialog title="编辑分组" show="{{updateDialogShow}}" bindbuttontap="tapUpdateDialog" buttons="{{buttons}}">
+    <view>
+     <mp-form id="form"  models="{{formData}}">
+       <mp-cell  prop="groupName" ext-class="">
+          <input bindinput="addInputChange" data-field="groupName" class="weui-input" value="{{formData.groupName}}" placeholder="请输入分组名称" />
+      </mp-cell>
+       </mp-form>
+    </view>
+</mp-dialog>

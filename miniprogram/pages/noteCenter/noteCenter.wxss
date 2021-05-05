@@ -1,0 +1,142 @@
+/* miniprogram/pages/noteCenter.wxss */
+.weui-actionsheet__cell {
+  padding: 10px !important;
+  font-size: 35rpx !important;
+}
+
+.category-wrap {
+  height: 90rpx;
+  
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #fff;
+}
+.catagory {
+  /* display: flex;
+  flex-wrap: wrap; */
+  padding: 0 10rpx 10rpx;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  border-bottom: 1px solid #f6f6f6;
+  height: 70rpx;
+  overflow: hidden;
+  z-index: 100;
+  /* transition: height 1s; */
+}
+.catagory.open {
+  height: auto;
+  overflow: visible;
+}
+.category-item {
+  /* flex: 0 0 auto; */
+  display: inline-block;
+  margin: 10rpx 20rpx 10rpx 0;
+  padding: 5rpx 10px;
+  text-align: center;
+  height: 50rpx;
+  background: #f6f6f6;
+  border-radius: 6rpx; 
+  font-size: 25rpx;
+  line-height: 50rpx;
+  
+}
+.category-item.active {
+  font-weight: bold;
+  font-size: 30rpx;
+}
+.icon-xiangxia {
+  position: absolute;
+  top: -20rpx;
+  right: 10rpx;
+  font-size: 40rpx;
+  line-height: 50px;
+  color: #ccc;
+  cursor: pointer;
+}
+.note-page {
+padding: 105rpx 0 20rpx;
+box-sizing: border-box;
+height: 90%;
+overflow: hidden
+}
+.main-view {
+  height: 100vh;
+  width: 100%;
+  background: #fff;
+  overflow: scroll;
+  
+  box-sizing: border-box;
+}
+.note-wrap {
+  text-align: left;
+  padding-right: 20rpx;
+}
+.note-content {
+  float: right;
+  width: 70%;
+  line-height: 45rpx;
+  font-size: 30rpx;
+  background: #B0C4DE;
+  margin-bottom: 30rpx;
+  border-radius: 20rpx;
+  padding: 20rpx 30rpx;
+}
+.bottom {
+  position: fixed;
+  bottom: 0;
+  height: 75rpx;
+  width: 100%;
+  background: #fff;
+  border-top:0.1px solid #eee;
+}
+.record-wrap {
+  padding: 12rpx 20rpx 8rpx 15rpx;
+  height: 100%;
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  justify-content: space-evenly;
+}
+.record-wrap .weui-input {
+  width: 560rpx;
+  border: 1px solid #ddd;
+  vertical-align: middle;
+  height: 54rpx;
+  padding: 5rpx 15rpx;
+  box-sizing: border-box;
+  border-radius: 10rpx;
+  font-size: 25rpx;
+  margin-right: 20rpx;
+}
+.record-wrap button {
+  width: 0 0 90rpx;
+  background-color: #F6F6F6;
+  color: #2f4f4f;
+  height: 54rpx;
+  line-height: 54rpx;
+  font-size: 30rpx;
+}
+.record-wrap .voice {
+  position: absolute;
+  right: 10rpx;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.operation {
+  position: fixed;
+  display: none;
+  width: 150rpx;
+  font-size: 28rpx;
+  background: #fff;
+  box-shadow: 0 0 6rpx #ccc;
+  padding: 15rpx;
+  line-height: 60rpx;
+}
+.operation.show {
+  display: block;
+}
+.operation-item {
+  height: 60rpx;
+}

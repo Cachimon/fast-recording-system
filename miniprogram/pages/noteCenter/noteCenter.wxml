@@ -1,0 +1,61 @@
+<!--miniprogram/pages/noteCenter.wxml-->
+<view class="note-page" bindtap="closeOperation">
+  <view class="category-wrap">
+    <view class="catagory {{showGroup ? 'open' : ''}}">
+      <view class="category-item {{index === currentGroupIndex ? 'active':''}}"  wx:for="{{groupList}}" wx:key="{{index}}" data-index="{{index}}" bindtap="changeGroup">{{item.groupName}}</view>
+    </view>
+    <view>
+    <icon class="iconfont icon-xiangxia" bindtap="toggleGroupShow"></icon>
+    </view>
+  </view>
+  <view class="main-view">
+    <view class="note-wrap">
+        <view class="note-content"  wx:for="{{noteList}}" wx:key="{{index}}" data-index="{{index}}"  bindlongtap="showOperation"><pre>
+{{item.content}}
+</pre></view>
+    </view>
+  </view>
+  <view class="bottom">
+    <view class="record-wrap">
+      <input bindinput="contentChange" data-field="content" class="weui-input" value="{{content}}"  placeholder="请输入..."/>
+      <button class="mini-btn" size="mini" bindtap="addContent">发送</button>
+<!-- <mp-icon class="voice" icon="mike" color="black" size="{{23}}"></mp-icon> -->
+<!-- <mp-icon icon="add" color="white" size="{{25}}"></mp-icon> -->
+    </view>
+  </view>
+</view>
+<view class="operation {{!!operationVisible ? 'show' : ''}}" style="{{operationStyle}}">
+ <view class="operation-item" bindtap="selectMore">多选</view>
+ <!-- <view class="operation-item">置顶</view> -->
+ <view class="operation-item" bindtap="upHandler" wx:if="{{currentNoteIndex !== 0}}" >上移</view>
+ <view class="operation-item" bindtap="downHandler" wx:if="{{currentNoteIndex !== noteList.length - 1}}" >下移</view>
+ <view class="operation-item" bindtap="setGroup">更改分组</view>
+ <view class="operation-item" bindtap="delNote">删除</view>
+</view>
+
+
+
+<view wx:if="{{loading}}" style="position:fixed;left:0;bottom:0;top:0;right:0;background:rgba(0,0,0,0.9);">
+  <view  style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100%">
+    <mp-loading duration="{{900}}" ext-class="demo0" type="dot-white" show="{{loading}}" animated="{{animated}}"></mp-loading>
+  </view>
+</view>
+
+<!--WXML示例代码-->
+<mp-actionSheet bindactiontap="btnClick" show="{{showActionsheet}}" actions="{{groups}}" title="更改分组">
+</mp-actionSheet>
+
+
+<!-- 确认设置分组弹窗 -->
+<mp-dialog  show="{{setDialogShow}}" bindbuttontap="tapSetDialog"  buttons="{{buttons}}">
+    <view>
+     是否确定将记录设置于分组【{{groups[selectedGroupIndex].text}}】之下?
+    </view>
+</mp-dialog>
+
+<!-- 确认删除弹窗 -->
+<mp-dialog  show="{{delDialogShow}}" bindbuttontap="tapDelDialog"  buttons="{{buttons}}">
+    <view>
+     是否确定删除该记录
+    </view>
+</mp-dialog>

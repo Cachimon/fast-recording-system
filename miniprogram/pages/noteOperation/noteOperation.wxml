@@ -1,0 +1,58 @@
+<!--miniprogram/pages/noteCenter.wxml-->
+<view class="note-page">
+<view class="title-wrap">
+<view class="aside" bindtap="back">返回</view>
+<view class="center">记录修改</view>
+<view class="aside"></view>
+<view>
+</view>
+</view>
+<view class="main-view">
+<view class="note-wrap">
+ <view class="note-item"  wx:for="{{noteList}}" wx:key="{{index}}" data-index="{{index}}">
+ <view  class="checkbox">
+  <checkbox checked="{{item.checked}}" style="height:20rpx" data-index="{{index}}" bindtap="toggleChecked"  />
+ </view>
+<view class="note-content"  bindlongtap="showOperation">{{item.content}}</view>
+ </view>
+</view>
+</view>
+<view class="bottom">
+<view class="record-wrap">
+ <view bindtap="setGroup">设置分组</view>
+ <view bindtap="delNote">删除</view>
+<!-- <mp-icon icon="add" color="white" size="{{25}}"></mp-icon> -->
+</view>
+</view>
+</view>
+<view class="operation {{!!operationVisible ? 'show' : ''}}" style="{{operationStyle}}">
+ <view class="operation-item">多选</view>
+ <view class="operation-item">置顶</view>
+ <view class="operation-item">上移</view>
+ <view class="operation-item">下移</view>
+ <view class="operation-item">更改分组</view>
+ <view class="operation-item">删除</view>
+</view>
+<view class="overlay">
+    <view></view>
+</view>
+
+
+<!--WXML示例代码-->
+<mp-actionSheet bindactiontap="btnClick" show="{{showActionsheet}}" actions="{{groups}}" title="更改至分组">
+</mp-actionSheet>
+
+
+<!-- 确认设置分组弹窗 -->
+<mp-dialog  show="{{setDialogShow}}" bindbuttontap="tapSetDialog"  buttons="{{buttons}}">
+    <view>
+     是否确定将已选记录设置于分组【{{groups[selectedGroupIndex].text}}】之下?
+    </view>
+</mp-dialog>
+
+<!-- 确认删除弹窗 -->
+<mp-dialog  show="{{delDialogShow}}" bindbuttontap="tapDelDialog"  buttons="{{buttons}}">
+    <view>
+     是否确定删除已选记录
+    </view>
+</mp-dialog>

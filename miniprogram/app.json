@@ -1,0 +1,52 @@
+{
+  "pages": [
+    
+    "pages/noteCenter/noteCenter",
+    "pages/index/index",
+    "pages/openapi/openapi",
+    "pages/noteOperation/noteOperation",
+    
+   
+   
+   
+   
+    "pages/userConsole/userConsole",
+    "pages/storageConsole/storageConsole",
+    "pages/databaseGuide/databaseGuide",
+    "pages/addFunction/addFunction",
+    "pages/deployFunctions/deployFunctions",
+    "pages/chooseLib/chooseLib",
+    
+    "pages/openapi/serverapi/serverapi",
+    "pages/openapi/callback/callback",
+    "pages/openapi/cloudid/cloudid",
+    "pages/im/im",
+    "pages/im/room/room"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "快记帮手",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2",
+  "tabBar": {
+    "color": "#8a8a8a",
+    "selectedColor": "#000",
+    "list": [
+      {
+        "pagePath": "pages/noteCenter/noteCenter",
+        "text": "记录"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "我的"
+      }
+    ]
+  },
+  "usingComponents": {
+    "mp-icon": "components/icon/icon"
+  }
+}
